@@ -22,7 +22,7 @@ async def init_db():
             CREATE TABLE IF NOT EXISTS events (
                 event_id INTEGER PRIMARY KEY AUTOINCREMENT,
                 operation_id TEXT NOT NULL,
-                fromStatus TEXT NOT NULL CHECK (fromStatus IN ('CREATED', 'PROCESSING', 'COMPLETED', 'REJECTED')),
+                fromStatus TEXT CHECK (fromStatus IN ('CREATED', 'PROCESSING', 'COMPLETED', 'REJECTED')) DEFAULT NULL,
                 toStatus TEXT NOT NULL CHECK (toStatus IN ('CREATED', 'PROCESSING', 'COMPLETED', 'REJECTED')),
                 message TEXT,
                 occurred_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
